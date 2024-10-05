@@ -1,0 +1,29 @@
+{
+  "name": "johns-site",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "next build",
+    "dev": "next dev -H 0.0.0.0",
+    "prettier": "prettier -write .",
+    "lint": "next lint"
+  },
+  "keywords": [],
+  "author": "John Hill",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "@chakra-ui/react": "^2.10.1",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "framer-motion": "^11.11.1",
+    "next": "^14.2.14",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.14",
+    "prettier": "^3.3.3"
+  }
+}

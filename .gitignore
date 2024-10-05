@@ -1,0 +1,72 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+*.gz
+
+# Dependency directories
+node_modules/
+.pnp/
+.pnp.js
+
+# Next.js build output
+.next/
+out/
+
+# Testing
+coverage/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Next.js cache
+.next/cache/
+
+# Parcel build output
+.cache/
+dist/
+
+# Misc
+.DS_Store
+*.pem
+
+# VSCode
+.vscode/
+
+# local env files
+.env*
+!.env.example
+
+# Build output
+build/
+dist/
+
+# Three.js files (if using example assets or models)
+*.blend
+*.fbx
+*.gltf
+*.glb
+
+# Ignore the lock files (optional, you can include if needed)
+package-lock.json
+yarn.lock
+
+# Sentry Debugging - if using Sentry for error tracking
+.sentryclirc
+.sentry-debug-meta.json
+
+# Chakra UI specific (if custom fonts are being cached)
+.cache/
