@@ -17,11 +17,10 @@ padding: 10px;
 }`
 
 const Logo = () => {
-  const footPrintImg = `/images/footprint${useColorModeValue('', '-dark')}.png`
+  const footPrintImg = `/images/coffee-coder${useColorModeValue('', '-dark')}.png`
 
   return (
     <Link href="/">
-      <a>
         <LogoBox>
           <Image src={footPrintImg} width={20} height={20} alt="logo" />
           <Text
@@ -33,7 +32,6 @@ const Logo = () => {
               John Hill
             </Text>
         </LogoBox>
-      </a>
     </Link>
   )
 }
