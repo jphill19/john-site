@@ -17,12 +17,12 @@ padding: 10px;
 }`
 
 const Logo = () => {
-  const footPrintImg = `/images/coffee-coder${useColorModeValue('', '-dark')}.png`
+  const coffeCodingImg = `/images/coffee-coder${useColorModeValue('', '-dark')}.png`
 
   return (
     <Link href="/">
         <LogoBox>
-          <Image src={footPrintImg} width={20} height={20} alt="logo" />
+          <Image src={coffeCodingImg} width={20} height={20} alt="logo" />
           <Text
             color={useColorModeValue('gray.800', 'whiteAlpha.900')}
             fontFamily='M PLUS Rounded 1c'
