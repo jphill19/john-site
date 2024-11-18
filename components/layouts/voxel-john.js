@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { Box, Spinner } from '@chakra-ui/icons'
 import * as THREE from 'three'
-import { OrbitControls } from 'three/examples/jsm/Addons.js'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { loadGLTFModel } from '../../lib/model'
 
 function easeOutCirc(x) {
@@ -10,26 +10,39 @@ function easeOutCirc(x) {
 
 const VoxelJohn = () => {
   const refContainer = useRef()
+  const initRef = useRef(false)
   const [loading, setLoading] = useState(true)
-  const [renderer, setRenderer] = useState()
-  const [_camera, setCamera] = useState()
-  const [target] = useState(new THREE.Vector3(-0.5, 1.2, 0))
-  const [initialCameraPosition] = useState(
-    new THREE.Vector3(
-      20 * Math.sin(0.2 * Math.PI),
-      10,
-      20 * Math.cos(0.2 * Math.PI)
-    )
+  const rendererRef = useRef()
+  const cameraRef = useRef()
+  const controlsRef = useRef()
+
+  const target = new THREE.Vector3(-0.5, 1.2, 0)
+  const initialCameraPosition = new THREE.Vector3(
+    20 * Math.sin(0.2 * Math.PI),
+    10,
+    35 * Math.cos(0.2 * Math.PI)
   )
-  const [scene] = useState(new THREE.Scene())
-  const [_controls, setControls] = useState()
+  const scene = new THREE.Scene()
+
+  const handleWindowResize = useCallback(() => {
+    const { current: container} = refContainer
+    if (container && rendererRef){
+      const scW = container.clientWidth
+      const scH = container.clientHeight
+
+      rendererRef.current.setSize(scH, scW)
+    }
+  }, [rendererRef])
 
   useEffect(() => {
     const { current: container } = refContainer
-    if (container && !renderer) {
+    if (container && !initRef.current) {
+      initRef.current = true
+
       const schW = container.clientWidth
       const scH = container.clientHeight
 
+      // Renderer
       const renderer = new THREE.WebGLRenderer({
         antialias: true,
         alpha: true
@@ -38,9 +51,10 @@ const VoxelJohn = () => {
       renderer.setSize(schW, scH)
       renderer.outputEncoding = THREE.sRGBEncoding
       container.appendChild(renderer.domElement)
-      setRenderer(renderer)
+      rendererRef.current = renderer
 
-      const scale = scH * 0.005 + 4.8
+      // Camera
+      const scale = scH * 0.005 + 4.8 //Determines the camera's view size based on the container's height. + 4.8: Adds a base value to ensure the scene is visible even on smaller screens.
       const camera = new THREE.OrthographicCamera(
         -scale,
         scale,
@@ -48,24 +62,34 @@ const VoxelJohn = () => {
         -scale,
         0.01,
         50000
-      )
+      ) // Left, right, top, bottom, near, far clipping planes.
       camera.position.copy(initialCameraPosition)
       camera.lookAt(target)
-      setCamera(camera)
+      cameraRef.current = camera
 
-      const ambientLight = new THREE.AmbientLight(0xcccccc, 1)
-      scene.add(ambientLight)
+      // Controls
       const controls = new OrbitControls(camera, renderer.domElement)
+      // controls.enableRotate = false // Disable rotation
+      // controls.enableZoom = false // Disable zooming
+      // controls.enablePan = false // Disable panning
       controls.autoRotate = true
       controls.target = target
-      setControls(controls)
+      controlsRef.current = controls
 
+      // Lights
+      const ambientLight = new THREE.AmbientLight(0xcccccc, 1)
+      scene.add(ambientLight)
+
+      // Load Model
       loadGLTFModel(scene, '/office.glb', {
         receiveShadow: false,
         castShadow: false
       }).then(() => {
         setLoading(false)
+        animate()
       })
+
+      // Animation Loop
       let req = null
       let frame = 0
       const animate = () => {
@@ -88,12 +112,21 @@ const VoxelJohn = () => {
         }
         renderer.render(scene, camera)
       }
+
+      // Cleanup
       return () => {
         cancelAnimationFrame(req)
         renderer.dispose()
       }
     }
   }, [])
+
+  useEffect(()=> {
+    window.addEventListener('resize', handleWindowResize)
+    return()=>{
+      window.removeEventListener('resize', handleWindowResize)
+    }
+  }, [rendererRef, handleWindowResize])
 
   return (
     <Box
@@ -108,18 +141,11 @@ const VoxelJohn = () => {
     >
       {loading && (
         <Spinner
-          // size="xl"
-          // position="absolute"
-          // left="50%"
-          // top="50%"
-          // ml="calc(0px - var(--spinner-size) /2"
-          // mt="calc(0px - var(--spinner-size) /2"
-
           size="xl"
           position="absolute"
           left="50%"
           top="50%"
-          transform="translate(-50%, -50%)" // Proper centering
+          transform="translate(-50%, -50%)"
         />
       )}
     </Box>
