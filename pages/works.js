@@ -10,20 +10,22 @@ import waterMarkApp from '../public/images/works/waterMarkApp.png'
 import comingSoon from '../public/images/works/comingSoon.png'
 import ashBattles from '../public/images/works/ashBattles.png'
 import freshStartRecipes from '../public/images/works/freshStartRecipes.png'
+import valiantShield from '../public/images/works/valiantShield.png'
 
 const Works = () => {
   return (
     <Layout>
-      <Container>
+      <Container maxW="container.md">
         <Heading as="h3" fontSize={20} mb={4}>
           Works
         </Heading>
         <SimpleGrid columns={[1, 1, 2]} spacing={6}>
           <Section>
             <WorkGridItem
-              id="Coming Soon Workout App"
-              title="Cooming Soon Workout App"
+              id="comingSoon"
+              title="FitAtlas"
               thumbnail={comingSoon}
+              placeholder="blur"
             >
               A website and mobile application designed for 3D human body
               rendering, enabling users to interactively select muscle groups
@@ -32,11 +34,11 @@ const Works = () => {
           </Section>
           <Section>
             <WorkGridItem
-              id="Fresh Start Recipes"
+              id="freshStartRecipes"
               title="Fresh Start Recipes"
               thumbnail={freshStartRecipes}
             >
-              A mobile app providing simple, budget-friendly recipes with
+              A mobile website providing simple, budget-friendly recipes with
               real-time pricing from local King Soopers stores, designed to
               support individuals navigating challenges or new beginnings by
               making cooking accessible and affordable.
@@ -44,9 +46,10 @@ const Works = () => {
           </Section>
           <Section>
             <WorkGridItem
-              id="Ash Batles History"
+              id="ashBattles"
               title="Ash Battles"
               thumbnail={ashBattles}
+              placeholder="blur"
             >
               A Pokémon-themed website leveraging AI and the Pokémon API to
               determine if Ash Ketchum, the protagonist of the Pokémon series,
@@ -54,6 +57,27 @@ const Works = () => {
             </WorkGridItem>
           </Section>
         </SimpleGrid>
+        <Section delay={0.4}>
+          <Divider my={6} />
+          <Heading as="h3" fontSize={20} mb={4}>
+            Sales Engineer Work
+          </Heading>
+          <SimpleGrid columns={[1, 1, 2]} spacing={6}>
+            <Section>
+              <WorkGridItem
+                id="valiantShield"
+                title="Valiant Shield"
+                thumbnail={valiantShield}
+                placeholder="blur"
+              >
+                L3Harris’ Valiant Shield 2024 project demonstrated cutting-edge
+                electronic warfare capabilities by integrating advanced
+                cross-domain solutions to enhance military readiness and secure
+                communication across diverse platforms.
+              </WorkGridItem>
+            </Section>
+          </SimpleGrid>
+        </Section>
 
         <Section delay={0.4}>
           <Divider my={6} />
@@ -63,22 +87,24 @@ const Works = () => {
           <SimpleGrid columns={[1, 1, 2]} spacing={6}>
             <Section>
               <WorkGridItem
-                id="Battle Ship"
+                id="battleship"
                 title="Battle Ship"
                 thumbnail={battleShip}
+                placeholder="blur"
               >
-                A Ruby-based Battleship game with customizable board sizes,
-                dynamic ship types, and a smart AI opponent featuring strategic
-                targeting, adaptive gameplay mechanics, and real-time feedback
-                for an engaging and challenging experience.
+                A Ruby terminal-based Battleship game with customizable board
+                sizes, dynamic ship types, and a smart AI opponent featuring
+                strategic targeting, adaptive gameplay mechanics, and real-time
+                feedback for an engaging and challenging experience.
               </WorkGridItem>
             </Section>
 
             <Section>
               <WorkGridItem
-                id="Watermark App"
+                id="watermark"
                 title="Watermark"
                 thumbnail={waterMarkApp}
+                placeholder="blur"
               >
                 A Windows-exclusive application for advanced watermarking,
                 featuring multi-image input, customizable resizing, adjustable
@@ -89,9 +115,10 @@ const Works = () => {
 
             <Section>
               <WorkGridItem
-                id="Morse Code Translator"
-                title="Morse Code Translator"
+                id="morseCodeConverter"
+                title="Morse Code Converter"
                 thumbnail={morseCodeTranslator}
+                placeholder="blur"
               >
                 A terminal-based Morse Code translator featuring text-to-Morse
                 encoding, Morse-to-text decoding, audio playback with

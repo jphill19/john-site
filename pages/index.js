@@ -6,18 +6,24 @@ import {
   Heading,
   Image,
   Link,
-  useColorModeValue
+  useColorModeValue,
+  SimpleGrid,
+  List,
+  ListItem,
+  Icon
 } from '@chakra-ui/react'
 import Section from '../components/layouts/section'
 import Paragraph from '../components/layouts/paragraph'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 import Layout from '../components/layouts/article'
 import { BioSection, BioYear } from '../components/layouts/bio'
+import { GridItem } from '@chakra-ui/react'
+import { IoLogoLinkedin, IoLogoGithub } from 'react-icons/io'
 
 const Page = () => {
   return (
     <Layout>
-      <Container>
+      <Container maxW="container.md">
         <Box
           borderRadius="lg"
           bg={useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')}
@@ -60,15 +66,23 @@ const Page = () => {
             Work
           </Heading>
           <Paragraph>
-            John is a freelance and a full-stack developer based in Colorado
-            with a passion for building digital services/stuff he wants. He has
-            a knack for all things launching products, from planning and
-            designing all the way to solving real-life problems with code. When
-            not online, he loves to hanging out with his wife or at the gym.{' '}
-            <Link as={NextLink} href="/works/inkdrop">
-              Inkdrop
-            </Link>
-            .
+            John is a full-stack developer with a foundation in cybersecurity
+            and computer networking. His journey into coding began during his
+            role as a Sales Engineer at a cybersecurity company, where he wrote
+            a Python script to solve a work-related challenge. This experience
+            sparked his passion for creative problem-solving and building
+            digital solutions.
+          </Paragraph>
+          <Paragraph>
+            <br />
+            With expertise in tech stacks like JavaScript, Python, Ruby on
+            Rails, React, Express.js, TypeScript, Flask, and PostgreSQL, John
+            brings a versatile skill set to both front-end and back-end
+            development. His enthusiasm for the creative process and tackling
+            real-world problems keeps him driven and excited about the endless
+            possibilities in technology. Outside of coding, John enjoys spending
+            time at the gym, exploring new innovations, and relaxing with his
+            wife.
           </Paragraph>
           <Box align="center" my={4}>
             <NextLink href="/works">
@@ -104,6 +118,38 @@ const Page = () => {
               Inkdrop
             </Link>
           </Paragraph>
+        </Section>
+
+        <Section delay={0.3}>
+          <Heading as="h3" variant="section-title">
+            Find Me Online
+          </Heading>
+          <List>
+            <ListItem>
+              <Link href="https://github.com/jphill19" target="_blank">
+                <Button
+                  variant="ghost"
+                  colorScheme="teal"
+                  leftIcon={<Icon as={IoLogoGithub} />}
+                >
+                  @jphill19
+                </Button>
+              </Link>
+            </ListItem>
+            <ListItem></ListItem>
+            <ListItem>
+              <Link href="www.linkedin.com/in/johnpierrehill" target="_blank">
+                <Button
+                  variant="ghost"
+                  colorScheme="teal"
+                  leftIcon={<Icon as={IoLogoLinkedin} />}
+                >
+                  John Hill
+                </Button>
+              </Link>
+            </ListItem>
+            <ListItem></ListItem>
+          </List>
         </Section>
       </Container>
     </Layout>

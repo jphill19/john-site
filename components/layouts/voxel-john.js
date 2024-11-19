@@ -71,7 +71,7 @@ const VoxelJohn = () => {
       const controls = new OrbitControls(camera, renderer.domElement)
       // controls.enableRotate = false // Disable rotation
       // controls.enableZoom = false // Disable zooming
-      // controls.enablePan = false // Disable panning
+      controls.enablePan = false // Disable panning
       controls.autoRotate = true
       controls.target = target
       controlsRef.current = controls

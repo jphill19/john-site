@@ -87,8 +87,8 @@ const Navbar = props => {
           <LinkItem href="/works" path={path}>
             Works
           </LinkItem>
-          <LinkItem href="/pots" path={path}>
-            Posts
+          <LinkItem href="/resume" path={path}>
+            Resume
           </LinkItem>
         </Stack>
         <Box flex={1} align="right">
@@ -101,17 +101,6 @@ const Navbar = props => {
                 variant="outline"
                 aria-label="Options"
               />
-              {/* <MenuList>
-                <NextLink href='/' passHref>
-                  <MenuItem as={Link}>About</MenuItem>
-                </NextLink>
-                <NextLink href='/works' passHref>
-                  <MenuItem as={Link}>Works</MenuItem>
-                </NextLink>
-                <NextLink href='/' passHref>
-                  <MenuItem as={Link}>Posts</MenuItem>
-                </NextLink>
-              </MenuList> */}
               <MenuList>
                 <MenuItem as={NextLink} href="/">
                   About
@@ -119,8 +108,8 @@ const Navbar = props => {
                 <MenuItem as={NextLink} href="/works">
                   Works
                 </MenuItem>
-                <MenuItem as={NextLink} href="/posts">
-                  Posts
+                <MenuItem as={NextLink} href="/resume">
+                  Resume
                 </MenuItem>
               </MenuList>
             </Menu>
