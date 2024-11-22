@@ -19,6 +19,8 @@ import Layout from '../components/layouts/article'
 import { BioSection, BioYear } from '../components/layouts/bio'
 import { GridItem } from '@chakra-ui/react'
 import { IoLogoLinkedin, IoLogoGithub } from 'react-icons/io'
+import NoSsr from '../components/layouts/no-ssr'
+import Map from '../components/layouts/map'
 
 const Page = () => {
   return (
@@ -92,26 +94,69 @@ const Page = () => {
             </NextLink>
           </Box>
         </Section>
+
         <Section delay={0.2}>
           <Heading as="h3" variant="section-title">
             Bio
           </Heading>
           <BioSection>
-            <BioYear>1984</BioYear>
-            Born in Denver Colorado, Raised in Santa Cruz Bolivia
+            <BioYear>1998</BioYear>
+            Born in Denver Colorado, Raised in South Amerca
           </BioSection>
           <BioSection>
             <BioYear>2022</BioYear>
             Completed Bachelor&apos;s Program at Metropolitan State University
           </BioSection>
           <BioSection>
-            <BioYear>2022 to 2024</BioYear>
+            <BioYear>2022 - 2024</BioYear>
             Worked at Everfox as a Cross Domain Solutions Sales Engineer
+          </BioSection>
+          <BioSection>
+            <BioYear>2024 - Present</BioYear>
+            Attending Turing School Of Software And Design Full Stack Program
           </BioSection>
         </Section>
 
         <Section delay={0.2}>
-          <Heading>I ♥</Heading>
+          <Heading as="h3" variant="section-title">
+            Bio
+          </Heading>
+          <NoSsr>
+            <Map
+              center={[-60, 50]}
+              zoom={0}
+              height="600px"
+              width="100%"
+              borderRadius="lg"
+              borderWidth="2px"
+              markers={[
+                {
+                  coordinates: [-104.87561587386408, 39.56293137354986],
+                  location: 'Denver, Colorado',
+                  imageSrc: '/images/maps/denver.jpeg',
+                  description: 'Test 123456'
+                },
+                {
+                  coordinates: [-63.1821, -17.7833],
+                  location: 'Santa Cruz, Bolivia',
+                  imageSrc: '/images/maps/santacruz.jpeg',
+                  description: 'Test 123456'
+                },
+                {
+                  coordinates: [-58.3816, -34.6037],
+                  location: 'Buenos Aires, Argentina',
+                  imageSrc: '/images/maps/buenosaires.jpeg',
+                  description: 'Test 123456'
+                }
+              ]}
+            />
+          </NoSsr>
+        </Section>
+
+        <Section delay={0.2}>
+          <Heading as="h3" variant="section-title">
+            Passions
+          </Heading>
           <Paragraph>
             Art, Music,{' '}
             <Link as={NextLink} href="/works/inkdrop">

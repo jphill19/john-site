@@ -1,4 +1,4 @@
-import Logo from '../Logo/logo.component'
+import Logo from './logo'
 import NextLink from 'next/link'
 import {
   Container,
@@ -16,23 +16,7 @@ import {
 } from '@chakra-ui/react'
 
 import { HamburgerIcon } from '@chakra-ui/icons'
-import ThemeToggleButton from '../layouts/theme-toggle-button'
-
-// const LinkItem = ({ href, path, children }) => {
-//   const active = path === href
-//   const inactiveColor = useColorModeValue('gray200', 'whiteAlpha.900')
-//   return (
-//     <NextLink href={href}>
-//       <Link
-//         p={2}
-//         bg={active ? 'glassTeal' : undefined}
-//         color={active ? '#202023' : inactiveColor}
-//       >
-//         {children}
-//       </Link>
-//     </NextLink>
-//   )
-// }
+import ThemeToggleButton from './theme-toggle-button'
 
 const LinkItem = ({ href, path, children }) => {
   const active = path === href

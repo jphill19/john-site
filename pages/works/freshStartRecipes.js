@@ -27,7 +27,7 @@ const Work = () => {
             <Meta>Wesite</Meta>
             <Link
               isExternal
-              href="https://fresh-start-recipes-fe-git-main-jphill19s-projects.vercel.app/>"
+              href="https://fresh-start-recipes-fe-git-main-jphill19s-projects.vercel.app"
             >
               freshStartRecipes.com <ExternalLinkIcon mx="2px" />
             </Link>

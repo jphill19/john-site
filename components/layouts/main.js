@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Navbar from '../nav-bar/nav-bar.component'
+import Navbar from './nav-bar'
 import { useState, useEffect } from 'react'
 import { Box, Container } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
@@ -27,7 +27,7 @@ const Main = ({ children, router }) => {
     <Box as="main" pb={8}>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>John Hills - Homepage</title>
+        <title>John P Hill</title>
       </Head>
 
       <Navbar path={router.asPath} />
@@ -38,12 +38,12 @@ const Main = ({ children, router }) => {
             initial={{ opacity: 1, y: 0 }}
             animate={
               router.asPath === '/resume'
-                ? { opacity: 0, y: 10 } 
-                : { opacity: 1, y: 0 } 
+                ? { opacity: 0, y: 10 }
+                : { opacity: 1, y: 0 }
             }
             transition={{ duration: 0.8 }}
             style={{ display: shouldDisplay ? 'block' : 'none' }}
-            onAnimationComplete={handleAnimationComplete} 
+            onAnimationComplete={handleAnimationComplete}
           >
             <VoxelJohn />
           </MotionBox>
