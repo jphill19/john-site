@@ -12,38 +12,121 @@ import {
   Spinner,
   useColorModeValue,
   useStyleConfig,
-  ChakraProvider
+  ChakraProvider,
+  chakra,
+  shouldForwardProp,
+  Badge
 } from '@chakra-ui/react'
 import theme from '../../lib/theme'
 import { emotionCache } from '../../lib/emotion-cache'
 import { CacheProvider } from '@emotion/react'
 import { Global } from '@emotion/react'
+import { motion } from 'framer-motion'
+import { CloseIcon } from '@chakra-ui/icons'
 
-const PopupContent = ({ onClose, imageSrc, title, description }) => {
+const MotionBox = chakra(motion.div, {
+  shouldForwardProp: prop => shouldForwardProp(prop) || prop === 'transition'
+})
+
+const PopupContent = ({
+  onClose,
+  imageSrc,
+  title,
+  parent,
+  languages,
+  description,
+  delay = 0.2
+}) => {
   return (
-    <Box
-      bg="black" // Semi-transparent background
-      backdropFilter="blur(10px)" // Blur effect
-      p={0}
-      borderRadius="md"
-      position="relative"
-      maxWidth="250px"
+    <MotionBox
+      initial={{ y: 10, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -10, opacity: 0 }}
+      transition={{ duration: 0.8, delay }}
+      height={['270px', '300px']} // Responsive heights
+      width={['280px', '300px']}
+      maxWidth="500px"
+      bg={useColorModeValue('whiteAlpha.500', 'blackAlpha.500')}
+      backdropFilter="blur(10px)"
+      borderRadius="16px"
+      boxShadow="lg"
+      overflow="hidden"
+      display="flex"
+      flexDirection="column"
     >
-      <Button position="absolute" top="2" right="2" size="sm" onClick={onClose}>
-        Close
-      </Button>
+      {/* Image Covering Full Width */}
       {imageSrc && (
-        <Image src={imageSrc} alt={title} borderRadius="md" mb={2} />
+        <Box>
+          <Image
+            src={imageSrc}
+            alt={title}
+            width='100%' // Adjust width based on screen size
+            maxWidth="400px" // Optional: Set a maximum width for larger screens
+            height="auto"
+            borderRadius="16px 16px 0 0"
+            mx="auto" // Center the image horizontally
+          />
+        </Box>
       )}
-      <Text fontWeight="bold" mb={1}>
-        {title}
-      </Text>
-      <Text>{description}</Text>
-    </Box>
+      {/* Content Section */}
+      <Box flex="1" p={2} textAlign="center">
+        <Text
+          fontWeight="bold"
+          fontSize="14px"
+          color={useColorModeValue('gray.800', 'whiteAlpha.900')}
+        >
+          {title}, {parent}
+        </Text>
+        {/* Badge and Small Text */}
+        <Box display="flex" alignItems="center" justifyContent="center" mt={2}>
+          <Badge
+            colorScheme="green"
+            fontSize="11px"
+            px={2}
+            py={1}
+            borderRadius="md"
+          >
+            Languages
+          </Badge>
+          <Text
+            ml={1}
+            fontWeight="bold"
+            fontSize="12px"
+            color={useColorModeValue('gray.600', 'gray.400')}
+          >
+            {languages}
+          </Text>
+        </Box>
+        <Text
+          fontSize="12px"
+          color={useColorModeValue('gray.600', 'gray.400')}
+          mt={1}
+        >
+          {description}
+        </Text>
+      </Box>
+      {/* Close Button Always at the Bottom */}
+      <Box textAlign="center" p={2} mt="auto">
+        <Button
+          onClick={onClose}
+          colorScheme="orange"
+          size="sm"
+          borderRadius="md"
+        >
+          Close
+        </Button>
+      </Box>
+    </MotionBox>
   )
 }
 
-const CustomMarker = ({ dotColor, lineColor, textColor, location }) => {
+const CustomMarker = ({
+  dotColor,
+  lineColor,
+  textColor,
+  location,
+  abbreviation
+}) => {
   return (
     <Box position="relative" display="flex" alignItems="center" height="50px">
       {/* Small Dot */}
@@ -102,7 +185,7 @@ const CustomMarker = ({ dotColor, lineColor, textColor, location }) => {
           background="transparent"
           marginBottom="1px"
         >
-          {location}
+          {location}, {abbreviation}
         </Text>
         <Box
           width="100%"
@@ -126,23 +209,25 @@ const Map = props => {
     ...rest
   } = props
 
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true) // For map loading
+  const [colorModeLoading, setColorModeLoading] = useState(false) // For color mode transition
   const mapContainer = useRef(null)
   const map = useRef(null)
   const markersRef = useRef([])
 
-  const { colorMode } = useColorMode()
+  const { colorMode, toggleColorMode } = useColorMode()
   const styles = useStyleConfig('Map', { ...props, colorMode })
 
-  const dotColor = useColorModeValue('#FF6F00', '#FFB74D')
-  const lineColor = useColorModeValue('#FF6F00', '#FFB74D')
-  const textColor = useColorModeValue('gray.800', 'whiteAlpha.900')
+  const dotColor = useColorModeValue('#ED8936', '#FFB74D')
+  const lineColor = useColorModeValue('#ED8936', '#FFB74D')
+  const textColor = useColorModeValue('#4A5568', 'whiteAlpha.900')
 
   const mapStyle =
     colorMode === 'light'
-      ? 'mapbox://styles/mapbox/light-v10'
+      ? 'mapbox://styles/jphill-apis/cm3t9we0e004h01qs4gvubcb3'
       : 'mapbox://styles/mapbox/dark-v10'
 
+  // Handle map loading
   useEffect(() => {
     if (!mapContainer.current) return
 
@@ -158,20 +243,13 @@ const Map = props => {
         ...props.mapOptions
       })
 
-      // Set loading to false when the map has loaded
-      map.current.on('load', () => {
-        setLoading(false)
-      })
+      map.current.on('load', () => setLoading(false))
     } else {
       map.current.setStyle(mapStyle)
-
-      // If the map is already loaded, set loading to false
       if (map.current.loaded()) {
         setLoading(false)
       } else {
-        map.current.on('load', () => {
-          setLoading(false)
-        })
+        map.current.on('load', () => setLoading(false))
       }
     }
   }, [mapStyle, center, zoom, props.mapOptions])
@@ -179,73 +257,93 @@ const Map = props => {
   useEffect(() => {
     if (!map.current) return
 
-    // Remove existing markers
     markersRef.current.forEach(marker => marker.remove())
     markersRef.current = []
 
-    // Add new markers
-    markers.forEach(({ coordinates, location, imageSrc, description }) => {
-      const markerContainer = document.createElement('div')
-      const root = ReactDOM.createRoot(markerContainer)
-      root.render(
-        <CustomMarker
-          dotColor={dotColor}
-          lineColor={lineColor}
-          textColor={textColor}
-          location={location}
-        />
-      )
+    markers.forEach(
+      ({
+        coordinates,
+        location,
+        imageSrc,
+        description,
+        abbreviation,
+        parent,
+        languages
+      }) => {
+        const markerContainer = document.createElement('div')
+        const root = ReactDOM.createRoot(markerContainer)
+        root.render(
+          <CustomMarker
+            dotColor={dotColor}
+            lineColor={lineColor}
+            textColor={textColor}
+            location={location}
+            abbreviation={abbreviation}
+          />
+        )
 
-      // Create a container for the popup content
-      const popupContainer = document.createElement('div')
+        const handleClosePopup = popup => {
+          popup.remove()
+        }
 
-      // Render the PopupContent component into the popup container
-      const popupRoot = ReactDOM.createRoot(popupContainer)
-      popupRoot.render(
-        <CacheProvider value={emotionCache}>
+        const popupContainer = document.createElement('div')
+        const popupRoot = ReactDOM.createRoot(popupContainer)
+        popupRoot.render(
           <ChakraProvider theme={theme}>
             <PopupContent
-              onClose={() => {
-                popup.remove()
-              }}
               imageSrc={imageSrc}
               title={location}
               description={description}
+              onClose={() => handleClosePopup(popup)}
+              parent={parent}
+              languages={languages}
             />
           </ChakraProvider>
-        </CacheProvider>
-      )
+        )
 
-      // Create the popup with the DOM element
-      const popup = new mapboxgl.Popup({
-        offset: 25,
-        closeButton: false
-      }).setDOMContent(popupContainer)
+        const popup = new mapboxgl.Popup({
+          offset: 25,
+          closeButton: false
+        }).setDOMContent(popupContainer)
 
-      // Create the marker and set the popup
-      const marker = new mapboxgl.Marker(markerContainer)
-        .setLngLat(coordinates)
-        .setPopup(popup)
-        .addTo(map.current)
+        const marker = new mapboxgl.Marker(markerContainer)
+          .setLngLat(coordinates)
+          .setPopup(popup)
+          .addTo(map.current)
 
-      // Keep track of markers
-      markersRef.current.push(marker)
-    })
+        markersRef.current.push(marker)
+      }
+    )
   }, [markers, dotColor, lineColor, textColor])
+
+  // Handle color mode changes
+  useEffect(() => {
+    const handleColorModeTransition = () => {
+      setColorModeLoading(true)
+      setTimeout(() => setColorModeLoading(false), 300) // Simulate transition duration
+    }
+
+    handleColorModeTransition()
+  }, [colorMode])
 
   return (
     <>
       <Global
         styles={`
-      .mapboxgl-popup-content {
-        background: transparent !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-      }
-      .mapboxgl-popup-tip {
-              opacity: 0 !important; /* Makes the tip invisible */
-    `}
+          .mapboxgl-popup-content {
+            background: transparent !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+          }
+          .mapboxgl-popup-tip {
+            opacity: 0 !important; /* Makes the tip invisible */
+          }
+          .mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib {
+            display: none !important; /* Completely hides the logo and attribution */
+          }
+        `}
       />
+
       <Box
         position="relative"
         width={width}
@@ -258,7 +356,7 @@ const Map = props => {
         overflow="hidden"
         {...rest}
       >
-        {loading && (
+        {(loading || colorModeLoading) && (
           <Spinner
             size="xl"
             position="absolute"
@@ -272,7 +370,7 @@ const Map = props => {
           ref={mapContainer}
           width="100%"
           height="100%"
-          visibility={loading ? 'hidden' : 'visible'}
+          visibility={loading || colorModeLoading ? 'hidden' : 'visible'}
         />
       </Box>
     </>

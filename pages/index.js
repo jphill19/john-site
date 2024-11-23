@@ -28,7 +28,7 @@ const Page = () => {
       <Container maxW="container.md">
         <Box
           borderRadius="lg"
-          bg={useColorModeValue('whiteAlpha.500', 'whiteAlpha.200')}
+          bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.200')}
           p={3}
           mb={6}
           mt={3}
@@ -68,23 +68,21 @@ const Page = () => {
             Work
           </Heading>
           <Paragraph>
-            John is a full-stack developer with a foundation in cybersecurity
-            and computer networking. His journey into coding began during his
-            role as a Sales Engineer at a cybersecurity company, where he wrote
-            a Python script to solve a work-related challenge. This experience
-            sparked his passion for creative problem-solving and building
-            digital solutions.
+            I am a full-stack developer with a foundation in cybersecurity and
+            computer networking. My journey into coding began during my role as
+            a Sales Engineer at a cybersecurity company, where I wrote a Python
+            script to solve a work-related challenge. This experience sparked my
+            passion for creative problem-solving and building digital solutions.
           </Paragraph>
           <Paragraph>
             <br />
             With expertise in tech stacks like JavaScript, Python, Ruby on
-            Rails, React, Express.js, TypeScript, Flask, and PostgreSQL, John
-            brings a versatile skill set to both front-end and back-end
-            development. His enthusiasm for the creative process and tackling
-            real-world problems keeps him driven and excited about the endless
-            possibilities in technology. Outside of coding, John enjoys spending
-            time at the gym, exploring new innovations, and relaxing with his
-            wife.
+            Rails, React, Express.js, TypeScript, Flask, and PostgreSQL, I bring
+            a versatile skill set to both front-end and back-end development. My
+            enthusiasm for the creative process and tackling real-world problems
+            keeps me driven and excited about the endless possibilities in
+            technology. Outside of coding, I enjoy spending time at the gym,
+            exploring new innovations, and relaxing with my wife.
           </Paragraph>
           <Box align="center" my={4}>
             <NextLink href="/works">
@@ -123,30 +121,40 @@ const Page = () => {
           </Heading>
           <NoSsr>
             <Map
-              center={[-60, 50]}
-              zoom={0}
-              height="600px"
+              center={[-50, 0]}
+              zoom={1}
+              height={['400px', '500px', '600px']}
               width="100%"
               borderRadius="lg"
               borderWidth="2px"
               markers={[
                 {
                   coordinates: [-104.87561587386408, 39.56293137354986],
-                  location: 'Denver, Colorado',
+                  location: 'Denver',
+                  abbreviation: 'CO',
+                  parent: 'Colorado',
+                  languages: 'English',
                   imageSrc: '/images/maps/denver.jpeg',
-                  description: 'Test 123456'
+                  description: `The place where I was born, met my wonderful wife, and now happily live together!`
                 },
                 {
                   coordinates: [-63.1821, -17.7833],
-                  location: 'Santa Cruz, Bolivia',
+                  location: 'Santa Cruz',
+                  abbreviation: 'BOL',
+                  parent: 'Bolivia',
+                  languages: 'Spanish & Portuguese',
                   imageSrc: '/images/maps/santacruz.jpeg',
-                  description: 'Test 123456'
+                  description: `I spent my childhood in Santa Cruz and traveled extensively across South America, immersing myself in its vibrant cultures`
                 },
                 {
                   coordinates: [-58.3816, -34.6037],
-                  location: 'Buenos Aires, Argentina',
+                  location: 'Buenos Aires',
+                  abbreviation: 'ARG',
+                  parent: 'Argentina',
+                  languages: 'Spanish',
                   imageSrc: '/images/maps/buenosaires.jpeg',
-                  description: 'Test 123456'
+                  description:
+                    'One of my favorite cities—I lived there for a year, and to this day, I remain a huge Lionel Messi fan.'
                 }
               ]}
             />
@@ -159,8 +167,8 @@ const Page = () => {
           </Heading>
           <Paragraph>
             Art, Music,{' '}
-            <Link as={NextLink} href="/works/inkdrop">
-              Inkdrop
+            <Link as={NextLink} href="/works/comingSoon">
+              FitAtlas
             </Link>
           </Paragraph>
         </Section>
