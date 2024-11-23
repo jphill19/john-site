@@ -11,8 +11,7 @@ import {
   useColorMode,
   Spinner,
   useColorModeValue,
-  useStyleConfig,
-  ThemeContext
+  useStyleConfig
 } from '@chakra-ui/react'
 import theme from '../../lib/theme'
 import { emotionCache } from '../../lib/emotion-cache'
@@ -193,18 +192,19 @@ const Map = props => {
 
         // Lazy-load the popup content
         ReactDOM.createRoot(popupContainer).render(
-          <ContextBridge contexts={[ThemeContext]}>
-            <Suspense fallback={<div>Loading...</div>}>
-              <LazyPopupContent
-                imageSrc={imageSrc}
-                title={location}
-                description={description}
-                onClose={() => popup.remove()}
-                parent={parent}
-                languages={languages}
-              />
-            </Suspense>
-          </ContextBridge>
+          <Suspense fallback={<div>Loading...</div>}>
+            <LazyPopupContent
+              imageSrc={imageSrc}
+              title={location}
+              description={description}
+              onClose={() => popup.remove()}
+              parent={parent}
+              languages={languages}
+              theme={theme}
+              colorMode={colorMode}
+              lineColor={lineColor}
+            />
+          </Suspense>
         )
 
         // Create and attach the popup

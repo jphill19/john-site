@@ -1,58 +1,134 @@
-import { Box, Image, Text, Badge, Button, useColorModeValue, chakra, shouldForwardProp} from '@chakra-ui/react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
-const MotionBox = chakra(motion.div, {
-  shouldForwardProp: prop => shouldForwardProp(prop) || prop === 'transition'
-})
-const PopupContent = ({ onClose, imageSrc, title, parent, languages, description, delay = 0.2 }) => {
+const MotionDiv = motion.div;
+
+const PopupContent = ({
+  onClose,
+  imageSrc,
+  title,
+  parent,
+  languages,
+  description,
+  delay = 0.2,
+  theme,
+  colorMode,
+  lineColor, // Receive lineColor as a prop
+}) => {
+  // Define styles based on colorMode
+  const bgColor = colorMode === 'light' ? 'rgba(255, 255, 255, 0.9)' : 'rgba(26, 32, 44, 0.9)';
+  const textColor = colorMode === 'light' ? '#1A202C' : '#F7FAFC';
+  const secondaryTextColor = colorMode === 'light' ? '#4A5568' : '#A0AEC0';
+
+  // Use lineColor for the close button, with a default if not provided
+  const buttonColor = lineColor || (colorMode === 'light' ? '#ED8936' : '#FFB74D');
+
+  // Green color for the badge text
+  const badgeTextColor = '#38A169'; // Chakra UI green.500
+  const badgeBorderColor = '#38A169';
+
   return (
-    <MotionBox
+    <MotionDiv
       initial={{ y: 10, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: -10, opacity: 0 }}
       transition={{ duration: 0.8, delay }}
-      bg={useColorModeValue('whiteAlpha.500', 'blackAlpha.500')}
-      borderRadius="16px"
-      boxShadow="lg"
-      overflow="hidden"
-      display="flex"
-      flexDirection="column"
+      style={{
+        backgroundColor: bgColor,
+        borderRadius: '16px',
+        boxShadow: '0px 10px 15px rgba(0, 0, 0, 0.1)',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+        maxWidth: '400px', // Limit the width to prevent it from getting too large
+      }}
     >
-      {/* Popup Content */}
       {imageSrc && (
-        <Box>
-          <Image
+        <div>
+          <img
             src={imageSrc}
             alt={title}
-            width="100%"
-            height="auto"
-            borderRadius="16px 16px 0 0"
-            mx="auto"
+            style={{
+              width: '100%',
+              height: 'auto',
+              borderRadius: '16px 16px 0 0',
+              display: 'block',
+              margin: 'auto',
+            }}
           />
-        </Box>
+        </div>
       )}
-      <Box flex="1" p={2} textAlign="center">
-        <Text fontWeight="bold" fontSize="14px" color={useColorModeValue('gray.800', 'whiteAlpha.900')}>
+      <div style={{ flex: 1, padding: '8px', textAlign: 'center' }}>
+        <p
+          style={{
+            fontWeight: 'bold',
+            fontSize: '14px',
+            color: textColor,
+            margin: '4px 0',
+          }}
+        >
           {title}, {parent}
-        </Text>
-        <Box display="flex" alignItems="center" justifyContent="center" mt={2}>
-          <Badge colorScheme="green" fontSize="11px" px={2} py={1} borderRadius="md">
+        </p>
+        <div
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginTop: '4px',
+          }}
+        >
+          <span
+            style={{
+              color: badgeTextColor,
+              fontSize: '12px',
+              padding: '2px 6px',
+              borderRadius: '4px',
+              fontWeight: '500',
+              border: `1px solid ${badgeBorderColor}`,
+              backgroundColor: 'transparent', // Transparent background
+            }}
+          >
             Languages
-          </Badge>
-          <Text ml={1} fontWeight="bold" fontSize="12px" color={useColorModeValue('gray.600', 'gray.400')}>
+          </span>
+          <span
+            style={{
+              marginLeft: '4px',
+              fontWeight: '500',
+              fontSize: '12px',
+              color: secondaryTextColor,
+            }}
+          >
             {languages}
-          </Text>
-        </Box>
-        <Text fontSize="12px" color={useColorModeValue('gray.600', 'gray.400')} mt={1}>
+          </span>
+        </div>
+        <p
+          style={{
+            fontSize: '12px',
+            color: secondaryTextColor,
+            marginTop: '8px',
+          }}
+        >
           {description}
-        </Text>
-      </Box>
-      <Box textAlign="center" p={2} mt="auto">
-        <Button onClick={onClose} colorScheme="orange" size="sm" borderRadius="md">
+        </p>
+      </div>
+      <div style={{ textAlign: 'center', padding: '8px', marginTop: 'auto' }}>
+        <button
+          onClick={onClose}
+          style={{
+            backgroundColor: buttonColor,
+            color: '#FFFFFF',
+            padding: '6px 16px',
+            borderRadius: '4px',
+            border: 'none',
+            cursor: 'pointer',
+            fontSize: '14px',
+            fontWeight: '600',
+          }}
+        >
           Close
-        </Button>
-      </Box>
-    </MotionBox>
+        </button>
+      </div>
+    </MotionDiv>
   );
 };
 
