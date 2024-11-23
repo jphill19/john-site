@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, lazy, Suspense } from 'react'
+import { useEffect, useRef, useState, lazy, Suspense, memo } from 'react'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import ReactDOM from 'react-dom/client'
@@ -13,86 +13,85 @@ import {
   useStyleConfig
 } from '@chakra-ui/react'
 import theme from '../../lib/theme'
-import { emotionCache } from '../../lib/emotion-cache'
-import { CacheProvider } from '@emotion/react'
 import { Global } from '@emotion/react'
-import { motion } from 'framer-motion'
-import { CloseIcon } from '@chakra-ui/icons'
-import { ContextBridge } from '../../lib/context-bridge'
+import { debounce } from 'lodash'
 
 const LazyPopupContent = lazy(() => import('./PopupContent'))
 
-const CustomMarker = ({
-  dotColor,
-  lineColor,
-  textColor,
-  location,
-  abbreviation
-}) => {
-  return (
-    <Box position="relative" display="flex" alignItems="center" height="50px">
-      <Box
-        width="12px"
-        height="12px"
-        bg={dotColor}
-        borderRadius="50%"
-        boxShadow={`0 0 5px ${dotColor}`}
-        position="absolute"
-        left="0"
-        top="0"
-        zIndex="2"
-      />
-      <Box
-        width="15px"
-        height="3px"
-        bg={lineColor}
-        position="absolute"
-        left="20px"
-        top="4.5px"
-        zIndex="1"
-        borderRadius="2px"
-      />
-      <Box
-        width="15px"
-        height="3px"
-        bg={lineColor}
-        position="absolute"
-        left="calc(20px + 15px - 1px)"
-        top="4.5px"
-        transform="rotate(30deg)"
-        transformOrigin="left center"
-        zIndex="1"
-      />
-      <Box
-        position="absolute"
-        left="calc(20px + 15px + 13px - 2px)"
-        top="-9.5px"
-        zIndex="3"
-        whiteSpace="nowrap"
-        display="flex"
-        flexDirection="column"
-        alignItems="flex-start"
-      >
-        <Text
-          color={textColor}
-          fontSize="14px"
-          fontWeight="bold"
-          background="transparent"
-          marginBottom="1px"
-        >
-          {location}, {abbreviation}
-        </Text>
+const CustomMarker = memo(
+  ({ dotColor, lineColor, textColor, location, abbreviation }) => {
+    return (
+      <Box position="relative" display="flex" alignItems="center" height="50px">
+        {/* Small Dot */}
         <Box
-          width="100%"
+          width="12px"
+          height="12px"
+          bg={dotColor}
+          borderRadius="50%"
+          boxShadow={`0 0 5px ${dotColor}`}
+          position="absolute"
+          left="0"
+          top="0"
+          zIndex="2"
+        />
+
+        {/* First Horizontal Line */}
+        <Box
+          width="15px"
           height="3px"
           bg={lineColor}
+          position="absolute"
+          left="20px"
+          top="4.5px"
+          zIndex="1"
           borderRadius="2px"
+        />
+
+        {/* Rotated Line */}
+        <Box
+          width="15px"
+          height="3px"
+          bg={lineColor}
+          position="absolute"
+          left="calc(20px + 15px - 1px)"
+          top="4.5px"
+          transform="rotate(30deg)"
+          transformOrigin="left center"
           zIndex="1"
         />
+
+        {/* Text with Underline */}
+        <Box
+          position="absolute"
+          left="calc(20px + 15px + 13px - 2px)"
+          top="-9.5px"
+          zIndex="3"
+          whiteSpace="nowrap"
+          display="flex"
+          flexDirection="column"
+          alignItems="flex-start"
+        >
+          <Text
+            color={textColor}
+            fontSize="14px"
+            fontWeight="bold"
+            background="transparent"
+            marginBottom="1px"
+          >
+            {location}, {abbreviation}
+          </Text>
+          <Box
+            width="100%"
+            height="3px"
+            bg={lineColor}
+            borderRadius="2px"
+            zIndex="1"
+          />
+        </Box>
       </Box>
-    </Box>
-  )
-}
+    )
+  }
+)
 
 const Map = props => {
   const {
@@ -104,8 +103,8 @@ const Map = props => {
     ...rest
   } = props
 
-  const [loading, setLoading] = useState(true)
-  const [colorModeLoading, setColorModeLoading] = useState(false)
+  const [loading, setLoading] = useState(true) // For map loading
+  const [colorModeLoading, setColorModeLoading] = useState(false) // For color mode transition
   const mapContainer = useRef(null)
   const map = useRef(null)
   const markersRef = useRef([])
@@ -119,9 +118,10 @@ const Map = props => {
 
   const mapStyle = useColorModeValue(
     'mapbox://styles/jphill-apis/cm3t9we0e004h01qs4gvubcb3',
-    'mapbox://styles/mapbox/dark-v10'
+    'mapbox://styles/jphill-apis/cm3umdv9m002101s01i9ag7lz'
   )
 
+  // Handle map loading
   useEffect(() => {
     if (!mapContainer.current) return
 
@@ -151,9 +151,11 @@ const Map = props => {
   useEffect(() => {
     if (!map.current) return
 
+    // Clear existing markers
     markersRef.current.forEach(marker => marker.remove())
     markersRef.current = []
 
+    // Create new markers
     markers.forEach(
       ({
         coordinates,
@@ -176,8 +178,10 @@ const Map = props => {
           />
         )
 
+        // Create a popup container
         const popupContainer = document.createElement('div')
 
+        // Lazy-load the popup content
         ReactDOM.createRoot(popupContainer).render(
           <Suspense fallback={<div>Loading...</div>}>
             <LazyPopupContent
@@ -194,25 +198,29 @@ const Map = props => {
           </Suspense>
         )
 
+        // Create and attach the popup
         const popup = new mapboxgl.Popup({
           offset: 25,
           closeButton: false
         }).setDOMContent(popupContainer)
 
+        // Attach the marker and popup to the map
         const marker = new mapboxgl.Marker(markerContainer)
           .setLngLat(coordinates)
           .setPopup(popup)
           .addTo(map.current)
 
+        // Keep track of the marker for cleanup
         markersRef.current.push(marker)
       }
     )
-  }, [markers, dotColor, lineColor, textColor])
+  }, [markers])
 
+  // Handle color mode changes
   useEffect(() => {
     const handleColorModeTransition = () => {
       setColorModeLoading(true)
-      setTimeout(() => setColorModeLoading(false), 300)
+      setTimeout(() => setColorModeLoading(false), 300) // Simulate transition duration
     }
 
     handleColorModeTransition()
@@ -221,16 +229,17 @@ const Map = props => {
   useEffect(() => {
     if (!map.current) return
 
-    const debounceTimeout = setTimeout(() => {
+    const updateStyle = debounce(() => {
       map.current.setStyle(mapStyle)
       if (map.current.loaded()) {
         setLoading(false)
       } else {
         map.current.on('load', () => setLoading(false))
       }
-    }, 200)
+    }, 500)
+    updateStyle()
 
-    return () => clearTimeout(debounceTimeout)
+    return () => updateStyle.cancel()
   }, [mapStyle])
 
   return (
@@ -243,10 +252,10 @@ const Map = props => {
             padding: 0 !important;
           }
           .mapboxgl-popup-tip {
-            opacity: 0 !important;
+            opacity: 0 !important; /* Makes the tip invisible */
           }
           .mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib {
-            display: none !important;
+            display: none !important; /* Completely hides the logo and attribution */
           }
         `}
       />

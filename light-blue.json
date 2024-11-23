@@ -1,9 +1,9 @@
 {
   "version": 8,
-  "name": "Mapbox Light",
+  "name": "Mapbox Dark",
   "metadata": {
       "mapbox:type": "default",
-      "mapbox:origin": "light-v10",
+      "mapbox:origin": "dark-v10",
       "mapbox:autocomposite": true,
       "mapbox:groups": {
           "1444855786460.0557": {
@@ -35,7 +35,7 @@
       50.8476
   ],
   "zoom": 4,
-  "sprite": "mapbox://sprites/mapbox/light-v10",
+  "sprite": "mapbox://sprites/mapbox/dark-v10",
   "glyphs": "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
   "layers": [
       {
@@ -43,7 +43,7 @@
           "type": "background",
           "layout": {},
           "paint": {
-              "background-color": "hsl(55, 11%, 96%)"
+              "background-color": "hsl(55, 1%, 20%)"
           }
       },
       {
@@ -54,7 +54,7 @@
           "maxzoom": 7,
           "layout": {},
           "paint": {
-              "fill-color": "hsl(0, 0%, 89%)",
+              "fill-color": "hsl(55, 1%, 20%)",
               "fill-opacity": [
                   "interpolate",
                   [
@@ -65,7 +65,7 @@
                       "zoom"
                   ],
                   2,
-                  0.1,
+                  0.3,
                   7,
                   0
               ],
@@ -88,7 +88,7 @@
           ],
           "layout": {},
           "paint": {
-              "fill-color": "hsl(150, 6%, 93%)",
+              "fill-color": "hsl(132, 2%, 20%)",
               "fill-opacity": [
                   "interpolate",
                   [
@@ -150,7 +150,7 @@
                       1
                   ]
               ],
-              "fill-color": "hsl(150, 6%, 93%)"
+              "fill-color": "hsl(132, 2%, 20%)"
           }
       },
       {
@@ -187,7 +187,7 @@
                       ]
                   ]
               ],
-              "fill-color": "hsl(185, 7%, 73%)"
+              "fill-color": "hsl(185, 3%, 5%)"
           }
       },
       {
@@ -209,7 +209,7 @@
               "line-join": "round"
           },
           "paint": {
-              "line-color": "hsl(187, 9%, 81%)",
+              "line-color": "hsl(185, 2%, 10%)",
               "line-width": [
                   "interpolate",
                   [
@@ -270,7 +270,7 @@
           "source-layer": "water",
           "layout": {},
           "paint": {
-              "fill-color": "hsl(185, 9%, 81%)"
+              "fill-color": "hsl(185, 2%, 10%)"
           }
       },
       {
@@ -350,7 +350,7 @@
           ],
           "layout": {},
           "paint": {
-              "fill-color": "hsl(156, 20%, 95%)"
+              "fill-color": "hsl(55, 1%, 20%)"
           }
       },
       {
@@ -395,7 +395,7 @@
                   20,
                   40
               ],
-              "line-color": "hsl(156, 20%, 95%)"
+              "line-color": "hsl(55, 1%, 20%)"
           }
       },
       {
@@ -443,7 +443,7 @@
                   11.5,
                   1
               ],
-              "fill-color": "hsl(0, 0%, 97%)"
+              "fill-color": "hsl(0, 0%, 27%)"
           }
       },
       {
@@ -497,7 +497,7 @@
                       20
                   ]
               ],
-              "line-color": "hsl(0, 0%, 97%)"
+              "line-color": "hsl(0, 0%, 27%)"
           }
       },
       {
@@ -527,7 +527,7 @@
           ],
           "layout": {},
           "paint": {
-              "line-color": "hsl(55, 3%, 87%)",
+              "line-color": "hsl(55, 1%, 15%)",
               "line-width": [
                   "interpolate",
                   [
@@ -584,7 +584,7 @@
           ],
           "layout": {},
           "paint": {
-              "fill-outline-color": "hsl(55, 3%, 87%)",
+              "fill-outline-color": "hsl(55, 1%, 15%)",
               "fill-opacity": [
                   "interpolate",
                   [
@@ -598,7 +598,7 @@
                   16,
                   1
               ],
-              "fill-color": "hsl(55, 5%, 91%)"
+              "fill-color": "hsl(55, 1%, 17%)"
           }
       },
       {
@@ -717,7 +717,7 @@
                       12
                   ]
               ],
-              "line-color": "hsl(185, 7%, 88%)",
+              "line-color": "hsl(185, 2%, 15%)",
               "line-opacity": [
                   "step",
                   [
@@ -815,7 +815,7 @@
                   20,
                   2
               ],
-              "line-color": "hsl(185, 12%, 89%)",
+              "line-color": "hsl(185, 2%, 29%)",
               "line-gap-width": [
                   "interpolate",
                   [
@@ -949,7 +949,7 @@
                   18,
                   2
               ],
-              "line-color": "hsl(185, 12%, 89%)",
+              "line-color": "hsl(185, 2%, 29%)",
               "line-gap-width": [
                   "interpolate",
                   [
@@ -1057,7 +1057,7 @@
                   20,
                   2
               ],
-              "line-color": "hsl(185, 12%, 89%)",
+              "line-color": "hsl(185, 2%, 29%)",
               "line-gap-width": [
                   "interpolate",
                   [
@@ -1139,7 +1139,7 @@
                   18,
                   2
               ],
-              "line-color": "hsl(185, 12%, 89%)",
+              "line-color": "hsl(185, 2%, 29%)",
               "line-gap-width": [
                   "interpolate",
                   [
@@ -1211,7 +1211,7 @@
                   18,
                   18
               ],
-              "line-color": "hsl(187, 7%, 88%)",
+              "line-color": "hsl(187, 2%, 15%)",
               "line-dasharray": [
                   "step",
                   [
@@ -1357,7 +1357,7 @@
                       ]
                   ]
               ],
-              "line-color": "hsl(0, 0%, 85%)"
+              "line-color": "hsl(185, 2%, 15%)"
           }
       },
       {
@@ -1415,7 +1415,7 @@
                   18,
                   6
               ],
-              "line-color": "hsl(0, 0%, 85%)",
+              "line-color": "hsl(185, 2%, 15%)",
               "line-dasharray": [
                   "step",
                   [
@@ -1516,7 +1516,7 @@
                   18,
                   18
               ],
-              "line-color": "hsl(187, 7%, 88%)"
+              "line-color": "hsl(185, 2%, 15%)"
           }
       },
       {
@@ -1572,7 +1572,7 @@
                   18,
                   12
               ],
-              "line-color": "hsl(187, 7%, 88%)",
+              "line-color": "hsl(185, 2%, 15%)",
               "line-dasharray": [
                   "step",
                   [
@@ -1720,7 +1720,7 @@
                       12
                   ]
               ],
-              "line-color": "hsl(187, 7%, 88%)",
+              "line-color": "hsl(185, 2%, 15%)",
               "line-opacity": [
                   "step",
                   [
@@ -1820,7 +1820,7 @@
                       26
                   ]
               ],
-              "line-color": "hsl(187, 7%, 88%)"
+              "line-color": "hsl(185, 2%, 15%)"
           }
       },
       {
@@ -1882,7 +1882,7 @@
                   18,
                   32
               ],
-              "line-color": "hsl(187, 7%, 88%)"
+              "line-color": "hsl(185, 2%, 15%)"
           }
       },
       {
@@ -1943,7 +1943,7 @@
                   18,
                   14.5
               ],
-              "line-color": "hsl(156, 12%, 92%)",
+              "line-color": "hsl(0, 0%, 17%)",
               "line-opacity": [
                   "step",
                   [
@@ -2045,7 +2045,6 @@
                   18,
                   12
               ],
-              "line-color": "hsl(0, 0%, 100%)",
               "line-opacity": [
                   "step",
                   [
@@ -2054,7 +2053,8 @@
                   1,
                   14,
                   0
-              ]
+              ],
+              "line-color": "hsl(0, 0%, 27%)"
           }
       },
       {
@@ -2124,7 +2124,6 @@
                   18,
                   18
               ],
-              "line-color": "hsl(0, 0%, 100%)",
               "line-opacity": [
                   "step",
                   [
@@ -2133,7 +2132,8 @@
                   1,
                   14,
                   0
-              ]
+              ],
+              "line-color": "hsl(0, 0%, 27%)"
           }
       },
       {
@@ -2217,7 +2217,7 @@
                   20,
                   2
               ],
-              "line-color": "hsl(156, 12%, 92%)",
+              "line-color": "hsl(0, 0%, 17%)",
               "line-gap-width": [
                   "interpolate",
                   [
@@ -2317,7 +2317,7 @@
                   20,
                   2
               ],
-              "line-color": "hsl(156, 12%, 92%)",
+              "line-color": "hsl(0, 0%, 17%)",
               "line-gap-width": [
                   "interpolate",
                   [
@@ -2408,7 +2408,7 @@
                   18,
                   2
               ],
-              "line-color": "hsl(156, 12%, 92%)",
+              "line-color": "hsl(0, 0%, 17%)",
               "line-gap-width": [
                   "interpolate",
                   [
@@ -2483,7 +2483,7 @@
                   18,
                   2
               ],
-              "line-color": "hsl(156, 12%, 92%)",
+              "line-color": "hsl(0, 0%, 17%)",
               "line-gap-width": [
                   "interpolate",
                   [
@@ -2564,7 +2564,7 @@
                   20,
                   2
               ],
-              "line-color": "hsl(156, 12%, 92%)",
+              "line-color": "hsl(0, 0%, 17%)",
               "line-gap-width": [
                   "interpolate",
                   [
@@ -2655,7 +2655,7 @@
                   18,
                   2
               ],
-              "line-color": "hsl(156, 12%, 92%)",
+              "line-color": "hsl(0, 0%, 17%)",
               "line-gap-width": [
                   "interpolate",
                   [
@@ -2746,7 +2746,7 @@
                   18,
                   18
               ],
-              "line-color": "hsl(0, 0%, 100%)",
+              "line-color": "hsl(0, 0%, 27%)",
               "line-dasharray": [
                   "step",
                   [
@@ -2888,7 +2888,7 @@
                   18,
                   4
               ],
-              "line-color": "hsl(0, 0%, 100%)",
+              "line-color": "hsl(0, 0%, 27%)",
               "line-dasharray": [
                   "step",
                   [
@@ -2988,7 +2988,7 @@
                   18,
                   6
               ],
-              "line-color": "hsl(0, 0%, 100%)",
+              "line-color": "hsl(0, 0%, 27%)",
               "line-dasharray": [
                   "step",
                   [
@@ -3094,7 +3094,7 @@
                   18,
                   18
               ],
-              "line-color": "hsl(0, 0%, 100%)"
+              "line-color": "hsl(0, 0%, 27%)"
           }
       },
       {
@@ -3155,7 +3155,7 @@
                   18,
                   12
               ],
-              "line-color": "hsl(0, 0%, 100%)",
+              "line-color": "hsl(0, 0%, 27%)",
               "line-dasharray": [
                   "step",
                   [
@@ -3277,7 +3277,7 @@
                   18,
                   12
               ],
-              "line-color": "hsl(0, 0%, 100%)",
+              "line-color": "hsl(0, 0%, 27%)",
               "line-opacity": [
                   "step",
                   [
@@ -3356,7 +3356,7 @@
                   18,
                   18
               ],
-              "line-color": "hsl(0, 0%, 100%)",
+              "line-color": "hsl(0, 0%, 27%)",
               "line-opacity": [
                   "step",
                   [
@@ -3431,7 +3431,7 @@
                   18,
                   26
               ],
-              "line-color": "hsl(0, 0%, 100%)"
+              "line-color": "hsl(0, 0%, 27%)"
           }
       },
       {
@@ -3492,7 +3492,7 @@
                   18,
                   32
               ],
-              "line-color": "hsl(0, 0%, 100%)"
+              "line-color": "hsl(0, 0%, 27%)"
           }
       },
       {
@@ -3558,7 +3558,7 @@
                   18,
                   32
               ],
-              "line-color": "hsl(0, 0%, 100%)"
+              "line-color": "hsl(0, 0%, 27%)"
           }
       },
       {
@@ -3617,7 +3617,7 @@
                   20,
                   1
               ],
-              "line-color": "hsl(156, 12%, 92%)"
+              "line-color": "hsl(0, 0%, 17%)"
           }
       },
       {
@@ -3682,7 +3682,7 @@
                   14,
                   1
               ],
-              "line-color": "hsl(156, 12%, 92%)"
+              "line-color": "hsl(0, 0%, 17%)"
           }
       },
       {
@@ -3801,7 +3801,7 @@
                       12
                   ]
               ],
-              "line-color": "hsl(0, 0%, 100%)",
+              "line-color": "hsl(0, 0%, 27%)",
               "line-opacity": [
                   "step",
                   [
@@ -3951,7 +3951,7 @@
                       12
                   ]
               ],
-              "line-color": "hsl(156, 12%, 92%)"
+              "line-color": "hsl(0, 0%, 17%)"
           }
       },
       {
@@ -4078,7 +4078,7 @@
                       26
                   ]
               ],
-              "line-color": "hsl(156, 12%, 92%)"
+              "line-color": "hsl(0, 0%, 17%)"
           }
       },
       {
@@ -4163,7 +4163,7 @@
                   18,
                   18
               ],
-              "line-color": "hsl(156, 12%, 92%)"
+              "line-color": "hsl(0, 0%, 17%)"
           }
       },
       {
@@ -4246,7 +4246,7 @@
                   18,
                   32
               ],
-              "line-color": "hsl(156, 12%, 92%)"
+              "line-color": "hsl(0, 0%, 17%)"
           }
       },
       {
@@ -4345,7 +4345,7 @@
                       ]
                   ]
               ],
-              "line-color": "hsl(156, 0%, 100%)"
+              "line-color": "hsl(0, 0%, 27%)"
           }
       },
       {
@@ -4409,7 +4409,7 @@
                   18,
                   4
               ],
-              "line-color": "hsl(0, 0%, 100%)",
+              "line-color": "hsl(0, 0%, 27%)",
               "line-dasharray": [
                   "step",
                   [
@@ -4504,7 +4504,7 @@
                   18,
                   6
               ],
-              "line-color": "hsl(0, 0%, 100%)",
+              "line-color": "hsl(0, 0%, 27%)",
               "line-dasharray": [
                   "step",
                   [
@@ -4613,7 +4613,7 @@
                   18,
                   18
               ],
-              "line-color": "hsl(0, 0%, 100%)"
+              "line-color": "hsl(0, 0%, 27%)"
           }
       },
       {
@@ -4669,7 +4669,7 @@
                   18,
                   12
               ],
-              "line-color": "hsl(0, 0%, 100%)",
+              "line-color": "hsl(0, 0%, 27%)",
               "line-dasharray": [
                   "step",
                   [
@@ -4817,7 +4817,7 @@
                       12
                   ]
               ],
-              "line-color": "hsl(0, 0%, 100%)",
+              "line-color": "hsl(0, 0%, 27%)",
               "line-opacity": [
                   "step",
                   [
@@ -4917,7 +4917,7 @@
                       26
                   ]
               ],
-              "line-color": "hsl(0, 0%, 100%)"
+              "line-color": "hsl(0, 0%, 27%)"
           }
       },
       {
@@ -4987,7 +4987,7 @@
                   18,
                   32
               ],
-              "line-color": "hsl(0, 0%, 100%)"
+              "line-color": "hsl(0, 0%, 27%)"
           }
       },
       {
@@ -5041,7 +5041,7 @@
                   20,
                   1
               ],
-              "line-color": "hsl(156, 12%, 92%)"
+              "line-color": "hsl(0, 0%, 17%)"
           }
       },
       {
@@ -5110,7 +5110,7 @@
                   20,
                   2
               ],
-              "line-color": "hsl(156, 12%, 92%)",
+              "line-color": "hsl(0, 0%, 17%)",
               "line-gap-width": [
                   "interpolate",
                   [
@@ -5195,7 +5195,7 @@
                   18,
                   2
               ],
-              "line-color": "hsl(156, 12%, 92%)",
+              "line-color": "hsl(0, 0%, 17%)",
               "line-gap-width": [
                   "interpolate",
                   [
@@ -5281,7 +5281,7 @@
                   18,
                   18
               ],
-              "line-color": "hsl(0, 0%, 100%)"
+              "line-color": "hsl(0, 0%, 27%)"
           }
       },
       {
@@ -5351,7 +5351,7 @@
                   18,
                   32
               ],
-              "line-color": "hsl(0, 0%, 100%)"
+              "line-color": "hsl(0, 0%, 27%)"
           }
       },
       {
@@ -5445,7 +5445,7 @@
                   0,
                   0
               ],
-              "line-color": "hsl(0, 0%, 84%)"
+              "line-color": "hsl(0, 0%, 10%)"
           }
       },
       {
@@ -5504,7 +5504,7 @@
                   10,
                   8
               ],
-              "line-color": "hsl(0, 0%, 84%)",
+              "line-color": "hsl(0, 0%, 10%)",
               "line-opacity": [
                   "interpolate",
                   [
@@ -5640,9 +5640,9 @@
                       "zoom"
                   ],
                   3,
-                  "hsl(0, 0%, 80%)",
+                  "hsl(0, 0%, 27%)",
                   7,
-                  "hsl(0, 0%, 70%)"
+                  "hsl(0, 0%, 35%)"
               ]
           }
       },
@@ -5700,7 +5700,7 @@
               "line-cap": "round"
           },
           "paint": {
-              "line-color": "hsl(0, 0%, 62%)",
+              "line-color": "hsl(0, 0%, 43%)",
               "line-width": [
                   "interpolate",
                   [
@@ -5773,7 +5773,7 @@
                   1.5,
                   1.5
               ],
-              "line-color": "hsl(0, 0%, 62%)",
+              "line-color": "hsl(0, 0%, 14%)",
               "line-width": [
                   "interpolate",
                   [
@@ -5941,7 +5941,7 @@
               "text-letter-spacing": 0.01
           },
           "paint": {
-              "text-color": "hsl(0, 0%, 42%)",
+              "text-color": "hsl(0, 0%, 78%)",
               "text-halo-color": [
                   "match",
                   [
@@ -5952,8 +5952,8 @@
                       "motorway",
                       "trunk"
                   ],
-                  "hsla(0, 0%, 100%, 0.75)",
-                  "hsl(0, 0%, 100%)"
+                  "hsla(0, 0%, 13%, 0.75)",
+                  "hsl(0, 0%, 13%)"
               ],
               "text-halo-width": 1,
               "text-halo-blur": 1
@@ -6037,7 +6037,7 @@
               ]
           },
           "paint": {
-              "text-color": "hsl(187, 7%, 51%)"
+              "text-color": "hsl(0, 0%, 45%)"
           }
       },
       {
@@ -6126,9 +6126,9 @@
           },
           "paint": {
               "text-halo-width": 0.5,
-              "text-halo-color": "hsl(0, 0%, 100%)",
+              "text-halo-color": "hsla(0, 0%, 10%, 0.75)",
               "text-halo-blur": 0.5,
-              "text-color": "hsl(0, 0%, 42%)"
+              "text-color": "hsl(0, 0%, 85%)"
           }
       },
       {
@@ -6199,17 +6199,7 @@
                       12
                   ]
               ],
-              "text-field": [
-                  "coalesce",
-                  [
-                      "get",
-                      "name_en"
-                  ],
-                  [
-                      "get",
-                      "name"
-                  ]
-              ],
+              "icon-image": "",
               "text-font": [
                   "DIN Offc Pro Medium",
                   "Arial Unicode MS Regular"
@@ -6220,13 +6210,51 @@
                       0,
                       0
                   ]
+              ],
+              "text-field": [
+                  "coalesce",
+                  [
+                      "get",
+                      "name_en"
+                  ],
+                  [
+                      "get",
+                      "name"
+                  ]
               ]
           },
           "paint": {
-              "text-color": "hsl(0, 0%, 42%)",
-              "text-halo-color": "hsl(0, 0%, 100%)",
+              "icon-opacity": [
+                  "step",
+                  [
+                      "zoom"
+                  ],
+                  [
+                      "step",
+                      [
+                          "get",
+                          "sizerank"
+                      ],
+                      0,
+                      5,
+                      1
+                  ],
+                  17,
+                  [
+                      "step",
+                      [
+                          "get",
+                          "sizerank"
+                      ],
+                      0,
+                      13,
+                      1
+                  ]
+              ],
+              "text-halo-color": "hsla(0, 0%, 10%, 0.75)",
               "text-halo-width": 0.5,
-              "text-halo-blur": 0.5
+              "text-halo-blur": 0.5,
+              "text-color": "hsl(0, 0%, 85%)"
           }
       },
       {
@@ -6340,7 +6368,7 @@
               ]
           },
           "paint": {
-              "text-color": "hsl(187, 7%, 51%)"
+              "text-color": "hsl(0, 0%, 45%)"
           }
       },
       {
@@ -6458,7 +6486,7 @@
               ]
           },
           "paint": {
-              "text-color": "hsl(187, 7%, 51%)"
+              "text-color": "hsl(0, 0%, 45%)"
           }
       },
       {
@@ -6520,7 +6548,7 @@
               ]
           },
           "paint": {
-              "text-halo-color": "hsl(0, 0%, 100%)",
+              "text-halo-color": "hsl(0, 0%, 13%)",
               "text-halo-width": 0.5,
               "text-halo-blur": 0.5,
               "text-color": [
@@ -6534,9 +6562,9 @@
                           "get",
                           "sizerank"
                       ],
-                      "hsl(0, 0%, 66%)",
+                      "hsl(0, 0%, 50%)",
                       5,
-                      "hsl(230, 0%, 56%)"
+                      "hsl(0, 0%, 60%)"
                   ],
                   17,
                   [
@@ -6545,9 +6573,9 @@
                           "get",
                           "sizerank"
                       ],
-                      "hsl(0, 0%, 66%)",
+                      "hsl(0, 0%, 50%)",
                       13,
-                      "hsl(0, 0%, 56%)"
+                      "hsl(0, 0%, 60%)"
                   ]
               ]
           }
@@ -6631,8 +6659,8 @@
               "text-max-width": 9
           },
           "paint": {
-              "text-color": "hsl(0, 0%, 42%)",
-              "text-halo-color": "hsl(0, 0%, 100%)",
+              "text-color": "hsl(0, 0%, 85%)",
+              "text-halo-color": "hsla(0, 0%, 10%, 0.75)",
               "text-halo-width": 1
           }
       },
@@ -6743,9 +6771,9 @@
               ]
           },
           "paint": {
-              "text-halo-color": "hsl(0, 0%, 100%)",
+              "text-halo-color": "hsla(0, 0%, 10%, 0.75)",
               "text-halo-width": 1,
-              "text-color": "hsl(0, 0%, 62%)",
+              "text-color": "hsl(0, 0%, 70%)",
               "text-halo-blur": 0.5
           }
       },
@@ -7236,13 +7264,13 @@
                       "get",
                       "symbolrank"
                   ],
-                  "hsl(0, 0%, 42%)",
+                  "hsl(0, 0%, 90%)",
                   11,
-                  "hsl(0, 0%, 55%)",
+                  "hsl(0, 0%, 85%)",
                   16,
-                  "hsl(0, 0%, 62%)"
+                  "hsl(0, 0%, 70%)"
               ],
-              "text-halo-color": "hsl(0, 0%, 100%)",
+              "text-halo-color": "hsla(0, 0%, 10%, 0.75)",
               "text-halo-width": 1,
               "icon-opacity": [
                   "step",
@@ -7373,8 +7401,8 @@
           },
           "paint": {
               "text-halo-width": 1,
-              "text-halo-color": "hsl(0, 0%, 100%)",
-              "text-color": "hsl(0, 0%, 66%)"
+              "text-halo-color": "hsla(0, 0%, 10%, 0.75)",
+              "text-color": "hsl(0, 0%, 50%)"
           }
       },
       {
@@ -7610,7 +7638,7 @@
                   7,
                   0
               ],
-              "text-color": "hsl(0, 0%, 42%)",
+              "text-color": "hsl(0, 0%, 45%)",
               "text-halo-color": [
                   "interpolate",
                   [
@@ -7620,9 +7648,9 @@
                       "zoom"
                   ],
                   2,
-                  "rgba(255,255,255,0.75)",
+                  "hsla(0, 0%, 10%, 0.75)",
                   3,
-                  "hsl(0, 0%, 100%)"
+                  "hsl(0, 0%, 10%)"
               ],
               "text-halo-width": 1.25
           }
@@ -7632,6 +7660,6 @@
   "created": "1970-01-01T00:00:00.000Z",
   "modified": "1970-01-01T00:00:00.000Z",
   "owner": "mapbox",
-  "id": "light-v10",
+  "id": "dark-v10",
   "draft": false
 }

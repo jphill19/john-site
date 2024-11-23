@@ -35,7 +35,7 @@ const Page = () => {
           mt={3}
           align="center"
         >
-          Hello, I&apos;m a full-stack developer based in Colorado
+          Hello, I&apos;m a Full-Stack Developer with Latino roots, based in Colorado!
         </Box>
 
         <Box display={{ md: 'flex' }}>
@@ -167,10 +167,14 @@ const Page = () => {
             Passions
           </Heading>
           <Paragraph>
-            Art, Music,{' '}
-            <Link as={NextLink} href="/works/comingSoon">
-              FitAtlas
+            I’m passionate about making the world a better place through code.
+            I’m currently working on{' '}
+            <Link as={NextLink} scroll={false} href="/works/comingSoon">
+              <strong>FitAtlas</strong>
             </Link>
+            , an exercise app designed to help newcomers confidently step into
+            the gym. Outside of coding, I thrive on tackling greater challenges,
+            staying active at the gym, and spending quality time with my wife.
           </Paragraph>
         </Section>
 
