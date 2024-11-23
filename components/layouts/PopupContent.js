@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 
 const MotionDiv = motion.div;
 
@@ -13,18 +13,18 @@ const PopupContent = ({
   delay = 0.2,
   theme,
   colorMode,
-  lineColor, // Receive lineColor as a prop
+  lineColor, 
 }) => {
-  // Define styles based on colorMode
+
   const bgColor = colorMode === 'light' ? 'rgba(255, 255, 255, 0.9)' : 'rgba(26, 32, 44, 0.9)';
   const textColor = colorMode === 'light' ? '#1A202C' : '#F7FAFC';
   const secondaryTextColor = colorMode === 'light' ? '#4A5568' : '#A0AEC0';
 
-  // Use lineColor for the close button, with a default if not provided
+
   const buttonColor = lineColor || (colorMode === 'light' ? '#ED8936' : '#FFB74D');
 
-  // Green color for the badge text
-  const badgeTextColor = '#38A169'; // Chakra UI green.500
+
+  const badgeTextColor = '#38A169'; 
   const badgeBorderColor = '#38A169';
 
   return (
@@ -40,7 +40,7 @@ const PopupContent = ({
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
-        maxWidth: '400px', // Limit the width to prevent it from getting too large
+        maxWidth: '400px',
       }}
     >
       {imageSrc && (

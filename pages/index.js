@@ -86,7 +86,7 @@ const Page = () => {
             exploring new innovations, and relaxing with my wife.
           </Paragraph>
           <Box align="center" my={4}>
-            <NextLink href="/works">
+            <NextLink href="/works" scroll={false}>
               <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
                 My Portfolio
               </Button>

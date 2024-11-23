@@ -1,25 +1,29 @@
-import { Box, Text, Image } from "@chakra-ui/react";
+import { Box, Text, Image, useColorModeValue } from "@chakra-ui/react";
 
 const LogoInline = ({ children }) => {
-  const logoStart = "/images/inline/logo-inline-start.png";
-  const logoEnd = "/images/inline/logo-inline-end.png";
+  const logoStart = useColorModeValue(
+    "/images/inline/logo-inline-start.png",
+    "/images/inline/logo-inline-start-dark.png"
+  );
+
+  const logoEnd = useColorModeValue(
+    "/images/inline/logo-inline-end.png",
+    "/images/inline/logo-inline-end-dark.png"
+  );
 
   return (
     <Box
       display="flex"
-      alignItems="center" // Align items centrally for better spacing
-      gap="4px" // Add consistent spacing between elements
-      p={0} // Remove unnecessary padding
+      alignItems="center"
+      gap="4px"
+      p={0}
     >
-      {/* Logo at the beginning */}
       <Image src={logoStart} alt="Logo start" boxSize="20px" />
 
-      {/* Text */}
       <Text lineHeight="20px" display="inline">
         {children}
       </Text>
 
-      {/* Logo at the end */}
       <Image src={logoEnd} alt="Logo end" boxSize="20px" />
     </Box>
   );

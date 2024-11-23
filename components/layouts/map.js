@@ -1,4 +1,3 @@
-// Ensure you import Text from Chakra UI
 import { useEffect, useRef, useState, lazy, Suspense } from 'react'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
@@ -32,7 +31,6 @@ const CustomMarker = ({
 }) => {
   return (
     <Box position="relative" display="flex" alignItems="center" height="50px">
-      {/* Small Dot */}
       <Box
         width="12px"
         height="12px"
@@ -44,8 +42,6 @@ const CustomMarker = ({
         top="0"
         zIndex="2"
       />
-
-      {/* First Horizontal Line */}
       <Box
         width="15px"
         height="3px"
@@ -56,8 +52,6 @@ const CustomMarker = ({
         zIndex="1"
         borderRadius="2px"
       />
-
-      {/* Rotated Line */}
       <Box
         width="15px"
         height="3px"
@@ -69,8 +63,6 @@ const CustomMarker = ({
         transformOrigin="left center"
         zIndex="1"
       />
-
-      {/* Text with Underline */}
       <Box
         position="absolute"
         left="calc(20px + 15px + 13px - 2px)"
@@ -112,8 +104,8 @@ const Map = props => {
     ...rest
   } = props
 
-  const [loading, setLoading] = useState(true) // For map loading
-  const [colorModeLoading, setColorModeLoading] = useState(false) // For color mode transition
+  const [loading, setLoading] = useState(true)
+  const [colorModeLoading, setColorModeLoading] = useState(false)
   const mapContainer = useRef(null)
   const map = useRef(null)
   const markersRef = useRef([])
@@ -130,7 +122,6 @@ const Map = props => {
     'mapbox://styles/mapbox/dark-v10'
   )
 
-  // Handle map loading
   useEffect(() => {
     if (!mapContainer.current) return
 
@@ -160,11 +151,9 @@ const Map = props => {
   useEffect(() => {
     if (!map.current) return
 
-    // Clear existing markers
     markersRef.current.forEach(marker => marker.remove())
     markersRef.current = []
 
-    // Create new markers
     markers.forEach(
       ({
         coordinates,
@@ -187,10 +176,8 @@ const Map = props => {
           />
         )
 
-        // Create a popup container
         const popupContainer = document.createElement('div')
 
-        // Lazy-load the popup content
         ReactDOM.createRoot(popupContainer).render(
           <Suspense fallback={<div>Loading...</div>}>
             <LazyPopupContent
@@ -207,29 +194,25 @@ const Map = props => {
           </Suspense>
         )
 
-        // Create and attach the popup
         const popup = new mapboxgl.Popup({
           offset: 25,
           closeButton: false
         }).setDOMContent(popupContainer)
 
-        // Attach the marker and popup to the map
         const marker = new mapboxgl.Marker(markerContainer)
           .setLngLat(coordinates)
           .setPopup(popup)
           .addTo(map.current)
 
-        // Keep track of the marker for cleanup
         markersRef.current.push(marker)
       }
     )
   }, [markers, dotColor, lineColor, textColor])
 
-  // Handle color mode changes
   useEffect(() => {
     const handleColorModeTransition = () => {
       setColorModeLoading(true)
-      setTimeout(() => setColorModeLoading(false), 300) // Simulate transition duration
+      setTimeout(() => setColorModeLoading(false), 300)
     }
 
     handleColorModeTransition()
@@ -245,7 +228,7 @@ const Map = props => {
       } else {
         map.current.on('load', () => setLoading(false))
       }
-    }, 200) // Adjust debounce time as needed
+    }, 200)
 
     return () => clearTimeout(debounceTimeout)
   }, [mapStyle])
@@ -260,10 +243,10 @@ const Map = props => {
             padding: 0 !important;
           }
           .mapboxgl-popup-tip {
-            opacity: 0 !important; /* Makes the tip invisible */
+            opacity: 0 !important;
           }
           .mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib {
-            display: none !important; /* Completely hides the logo and attribution */
+            display: none !important;
           }
         `}
       />
