@@ -21,6 +21,7 @@ import { GridItem } from '@chakra-ui/react'
 import { IoLogoLinkedin, IoLogoGithub } from 'react-icons/io'
 import NoSsr from '../components/layouts/no-ssr'
 import Map from '../components/layouts/map'
+import LogoInline from '../components/layouts/logo-inline'
 
 const Page = () => {
   return (
@@ -40,9 +41,9 @@ const Page = () => {
         <Box display={{ md: 'flex' }}>
           <Box flexGrow={1}>
             <Heading as="h2" variant="page-title">
-              John Hill
+              John Pierre Hill
             </Heading>
-            <p>Nerdy guy with nerdy hobbies</p>
+            <LogoInline>Code Brewer | Gym Enthusiast | Life Partner</LogoInline>
           </Box>
           <Box
             flexShrink={0}

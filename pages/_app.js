@@ -9,7 +9,6 @@ import Head from 'next/head'
 
 const Website = ({ Component, pageProps, router }) => {
   return (
-    <CacheProvider value={emotionCache}>
       <ChakraProvider theme={theme}>
         <Fonts />
         <Head>
@@ -25,7 +24,6 @@ const Website = ({ Component, pageProps, router }) => {
           </AnimatePresence>
         </Layout>a
       </ChakraProvider>
-    </CacheProvider>
   )
 }
 

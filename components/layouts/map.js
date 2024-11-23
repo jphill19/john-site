@@ -1,5 +1,5 @@
 // Ensure you import Text from Chakra UI
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, lazy, Suspense } from 'react'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import ReactDOM from 'react-dom/client'
@@ -12,10 +12,7 @@ import {
   Spinner,
   useColorModeValue,
   useStyleConfig,
-  ChakraProvider,
-  chakra,
-  shouldForwardProp,
-  Badge
+  ThemeContext
 } from '@chakra-ui/react'
 import theme from '../../lib/theme'
 import { emotionCache } from '../../lib/emotion-cache'
@@ -23,102 +20,9 @@ import { CacheProvider } from '@emotion/react'
 import { Global } from '@emotion/react'
 import { motion } from 'framer-motion'
 import { CloseIcon } from '@chakra-ui/icons'
+import { ContextBridge } from '../../lib/context-bridge'
 
-const MotionBox = chakra(motion.div, {
-  shouldForwardProp: prop => shouldForwardProp(prop) || prop === 'transition'
-})
-
-const PopupContent = ({
-  onClose,
-  imageSrc,
-  title,
-  parent,
-  languages,
-  description,
-  delay = 0.2
-}) => {
-  return (
-    <MotionBox
-      initial={{ y: 10, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ y: -10, opacity: 0 }}
-      transition={{ duration: 0.8, delay }}
-      height={['270px', '300px']} // Responsive heights
-      width={['280px', '300px']}
-      maxWidth="500px"
-      bg={useColorModeValue('whiteAlpha.500', 'blackAlpha.500')}
-      backdropFilter="blur(10px)"
-      borderRadius="16px"
-      boxShadow="lg"
-      overflow="hidden"
-      display="flex"
-      flexDirection="column"
-    >
-      {/* Image Covering Full Width */}
-      {imageSrc && (
-        <Box>
-          <Image
-            src={imageSrc}
-            alt={title}
-            width='100%' // Adjust width based on screen size
-            maxWidth="400px" // Optional: Set a maximum width for larger screens
-            height="auto"
-            borderRadius="16px 16px 0 0"
-            mx="auto" // Center the image horizontally
-          />
-        </Box>
-      )}
-      {/* Content Section */}
-      <Box flex="1" p={2} textAlign="center">
-        <Text
-          fontWeight="bold"
-          fontSize="14px"
-          color={useColorModeValue('gray.800', 'whiteAlpha.900')}
-        >
-          {title}, {parent}
-        </Text>
-        {/* Badge and Small Text */}
-        <Box display="flex" alignItems="center" justifyContent="center" mt={2}>
-          <Badge
-            colorScheme="green"
-            fontSize="11px"
-            px={2}
-            py={1}
-            borderRadius="md"
-          >
-            Languages
-          </Badge>
-          <Text
-            ml={1}
-            fontWeight="bold"
-            fontSize="12px"
-            color={useColorModeValue('gray.600', 'gray.400')}
-          >
-            {languages}
-          </Text>
-        </Box>
-        <Text
-          fontSize="12px"
-          color={useColorModeValue('gray.600', 'gray.400')}
-          mt={1}
-        >
-          {description}
-        </Text>
-      </Box>
-      {/* Close Button Always at the Bottom */}
-      <Box textAlign="center" p={2} mt="auto">
-        <Button
-          onClick={onClose}
-          colorScheme="orange"
-          size="sm"
-          borderRadius="md"
-        >
-          Close
-        </Button>
-      </Box>
-    </MotionBox>
-  )
-}
+const LazyPopupContent = lazy(() => import('./PopupContent'))
 
 const CustomMarker = ({
   dotColor,
@@ -222,10 +126,10 @@ const Map = props => {
   const lineColor = useColorModeValue('#ED8936', '#FFB74D')
   const textColor = useColorModeValue('#4A5568', 'whiteAlpha.900')
 
-  const mapStyle =
-    colorMode === 'light'
-      ? 'mapbox://styles/jphill-apis/cm3t9we0e004h01qs4gvubcb3'
-      : 'mapbox://styles/mapbox/dark-v10'
+  const mapStyle = useColorModeValue(
+    'mapbox://styles/jphill-apis/cm3t9we0e004h01qs4gvubcb3',
+    'mapbox://styles/mapbox/dark-v10'
+  )
 
   // Handle map loading
   useEffect(() => {
@@ -257,9 +161,11 @@ const Map = props => {
   useEffect(() => {
     if (!map.current) return
 
+    // Clear existing markers
     markersRef.current.forEach(marker => marker.remove())
     markersRef.current = []
 
+    // Create new markers
     markers.forEach(
       ({
         coordinates,
@@ -282,35 +188,38 @@ const Map = props => {
           />
         )
 
-        const handleClosePopup = popup => {
-          popup.remove()
-        }
-
+        // Create a popup container
         const popupContainer = document.createElement('div')
-        const popupRoot = ReactDOM.createRoot(popupContainer)
-        popupRoot.render(
-          <ChakraProvider theme={theme}>
-            <PopupContent
-              imageSrc={imageSrc}
-              title={location}
-              description={description}
-              onClose={() => handleClosePopup(popup)}
-              parent={parent}
-              languages={languages}
-            />
-          </ChakraProvider>
+
+        // Lazy-load the popup content
+        ReactDOM.createRoot(popupContainer).render(
+          <ContextBridge contexts={[ThemeContext]}>
+            <Suspense fallback={<div>Loading...</div>}>
+              <LazyPopupContent
+                imageSrc={imageSrc}
+                title={location}
+                description={description}
+                onClose={() => popup.remove()}
+                parent={parent}
+                languages={languages}
+              />
+            </Suspense>
+          </ContextBridge>
         )
 
+        // Create and attach the popup
         const popup = new mapboxgl.Popup({
           offset: 25,
           closeButton: false
         }).setDOMContent(popupContainer)
 
+        // Attach the marker and popup to the map
         const marker = new mapboxgl.Marker(markerContainer)
           .setLngLat(coordinates)
           .setPopup(popup)
           .addTo(map.current)
 
+        // Keep track of the marker for cleanup
         markersRef.current.push(marker)
       }
     )
@@ -325,6 +234,21 @@ const Map = props => {
 
     handleColorModeTransition()
   }, [colorMode])
+
+  useEffect(() => {
+    if (!map.current) return
+
+    const debounceTimeout = setTimeout(() => {
+      map.current.setStyle(mapStyle)
+      if (map.current.loaded()) {
+        setLoading(false)
+      } else {
+        map.current.on('load', () => setLoading(false))
+      }
+    }, 200) // Adjust debounce time as needed
+
+    return () => clearTimeout(debounceTimeout)
+  }, [mapStyle])
 
   return (
     <>
