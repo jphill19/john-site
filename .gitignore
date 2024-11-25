@@ -58,7 +58,8 @@ dist/
 *.blend
 *.fbx
 *.gltf
-*.glb
+- *.glb
+
 
 # Ignore the lock files (optional, you can include if needed)
 package-lock.json
