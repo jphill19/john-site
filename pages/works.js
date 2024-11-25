@@ -70,10 +70,10 @@ const Works = () => {
                 thumbnail={valiantShield}
                 placeholder="blur"
               >
-                L3Harris’ Valiant Shield 2024 project demonstrated cutting-edge
-                electronic warfare capabilities by integrating advanced
-                cross-domain solutions to enhance military readiness and secure
-                communication across diverse platforms.
+                I worked as a contractor for Everfox, implementing Cross Domain
+                Solutions for L3Harris’ Valiant Shield 2024 project, which
+                enhanced military readiness and secure communication through
+                advanced electronic warfare capabilities.
               </WorkGridItem>
             </Section>
           </SimpleGrid>
