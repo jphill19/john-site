@@ -1,23 +1,31 @@
-import { Box } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react';
+import { Worker, Viewer } from '@react-pdf-viewer/core';
+import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
+import '@react-pdf-viewer/core/lib/styles/index.css';
+import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
-const EmbedResume = ({ src }) => (
-  <Box
-    border="2px solid"
-    borderColor="gray.300"
-    borderRadius="lg"
-    overflow="hidden"
-    w="full"
-    h="100vh"
-    mt="10px"
-  >
-    <embed
-      src={src}
-      type="application/pdf"
-      width="100%"
-      height="100%"
-      style={{ border: 'none' }}
-    />
-  </Box>
-)
+const EmbedResume = ({ src }) => {
+  const defaultLayout = defaultLayoutPlugin(); // Fullscreen functionality is included here
 
-export default EmbedResume
+  return (
+    <Box
+      border="2px solid"
+      borderColor="gray.300"
+      borderRadius="lg"
+      overflow="hidden"
+      position="relative"
+      w="full"
+      h={["80vh", "100vh"]}
+      mt="10px"
+    >
+      <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
+        <Viewer
+          fileUrl={src}
+          plugins={[defaultLayout]} 
+        />
+      </Worker>
+    </Box>
+  );
+};
+
+export default EmbedResume;

@@ -16,6 +16,7 @@ const Website = ({ Component, pageProps, router }) => {
     <ChakraProvider theme={theme}>
       <Fonts />
       <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
           rel="icon"
           href="/images/coffee-coder-dark.png"
