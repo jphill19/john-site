@@ -35,7 +35,8 @@ const Page = () => {
           mt={3}
           align="center"
         >
-          Hello, I&apos;m a Full-Stack Developer with Latino roots, based in Colorado!
+          Hello, I&apos;m a Full-Stack Developer with Latino roots, based in
+          Colorado!
         </Box>
 
         <Box display={{ md: 'flex' }}>
@@ -77,13 +78,14 @@ const Page = () => {
           </Paragraph>
           <Paragraph>
             <br />
-            With expertise in tech stacks like JavaScript, Python, Ruby on
-            Rails, React, Express.js, TypeScript, Flask, and PostgreSQL, I bring
-            a versatile skill set to both front-end and back-end development. My
-            enthusiasm for the creative process and tackling real-world problems
-            keeps me driven and excited about the endless possibilities in
-            technology. Outside of coding, I enjoy spending time at the gym,
-            exploring new innovations, and relaxing with my wife.
+            With expertise in tech stacks like React, Next.js, Three.js,
+            TypeScript, JavaScript, Python, Flask, Express.js, PostgreSQL, and
+            Ruby on Rails, I bring a versatile skill set to both front-end and
+            back-end development. My enthusiasm for the creative process and
+            tackling real-world problems keeps me driven and excited about the
+            endless possibilities in technology. Outside of coding, I enjoy
+            spending time at the gym, exploring new innovations, and relaxing
+            with my wife..
           </Paragraph>
           <Box align="center" my={4}>
             <NextLink href="/works" scroll={false}>
@@ -117,9 +119,7 @@ const Page = () => {
         </Section>
 
         <Section delay={0.2}>
-          <Heading as="h3" variant="section-title">
-            
-          </Heading>
+          <Heading as="h3" variant="section-title"></Heading>
           <NoSsr>
             <Map
               center={[-50, 0]}
