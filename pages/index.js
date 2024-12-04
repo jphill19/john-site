@@ -102,7 +102,7 @@ const Page = () => {
           </Heading>
           <BioSection>
             <BioYear>1998</BioYear>
-            Born in Denver Colorado, Raised in South Amerca
+            Born in Denver Colorado, Raised in South America
           </BioSection>
           <BioSection>
             <BioYear>2022</BioYear>
@@ -196,7 +196,10 @@ const Page = () => {
             </ListItem>
             <ListItem></ListItem>
             <ListItem>
-              <Link href="www.linkedin.com/in/johnpierrehill" target="_blank">
+              <Link
+                href="https://www.linkedin.com/in/john-hill-309715245/"
+                target="_blank"
+              >
                 <Button
                   variant="ghost"
                   colorScheme="teal"
