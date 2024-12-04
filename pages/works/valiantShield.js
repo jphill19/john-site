@@ -38,7 +38,7 @@ const Work = () => {
               isExternal
               href="https://www.l3harris.com/newsroom/press-release/2024/07/l3harris-demonstrates-electronic-warfare-valiant-shield-2024"
             >
-              ashbattles.com <ExternalLinkIcon mx="2px" />
+              Article Link<ExternalLinkIcon mx="2px" />
             </Link>
           </ListItem>
         </List>
