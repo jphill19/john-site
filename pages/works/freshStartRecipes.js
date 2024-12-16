@@ -18,9 +18,10 @@ const Work = () => {
         </Title>
         <Paragraph>
           A mobile website providing simple, budget-friendly recipes with
-          real-time pricing from local King Soopers stores, designed to support
+          real-time pricing from local King Soopers stores. Designed to support
           individuals navigating challenges or new beginnings by making cooking
-          accessible and affordable.
+          accessible and affordable, this project proudly won Turing's Demo
+          Competition for its innovative and impactful approach.
         </Paragraph>
         <List ml={4} my={4}>
           <ListItem>
@@ -34,7 +35,7 @@ const Work = () => {
           </ListItem>
           <ListItem>
             <Meta>Stack</Meta>
-            <span>React, Rails, PostgreSQL</span>
+            <span>Next.js, TailwindCSS, React, Rails, PostgreSQL</span>
           </ListItem>
         </List>
         <WorkImage
