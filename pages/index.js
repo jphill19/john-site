@@ -37,6 +37,7 @@ const Page = () => {
         >
           Hello, I&apos;m a Full-Stack Developer with Latino roots, based in
           Colorado!
+          <br />I currently hold an active Top Secret (TS) Clearance.
         </Box>
 
         <Box display={{ md: 'flex' }}>
@@ -78,14 +79,16 @@ const Page = () => {
           </Paragraph>
           <Paragraph>
             <br />
-            With expertise in tech stacks like React, Next.js, Three.js,
-            TypeScript, JavaScript, Python, Flask, Express.js, PostgreSQL, and
-            Ruby on Rails, I bring a versatile skill set to both front-end and
-            back-end development. My enthusiasm for the creative process and
-            tackling real-world problems keeps me driven and excited about the
-            endless possibilities in technology. Outside of coding, I enjoy
-            spending time at the gym, exploring new innovations, and relaxing
-            with my wife..
+            I've built a solid foundation in tech using React, Next.js,
+            Three.js, TypeScript, JavaScript, Python, Flask, Express.js,
+            PostgreSQL, and Ruby on Rails, which lets me tackle both front-end
+            and back-end challenges. Lately, I've been rolling up my sleeves and
+            diving into Java for Spring Boot to further strengthen my skills in
+            building robust, scalable back-end systems. I’m genuinely passionate
+            about solving real-world problems through code and always eager to
+            learn something new. When I'm not coding, you'll find me at the gym,
+            checking out the latest tech trends, or enjoying some quality time
+            with my wife.
           </Paragraph>
           <Box align="center" my={4}>
             <NextLink href="/works" scroll={false}>
@@ -113,7 +116,7 @@ const Page = () => {
             Worked at Everfox as a Cross Domain Solutions Sales Engineer
           </BioSection>
           <BioSection>
-            <BioYear>2024 - Present</BioYear>
+            <BioYear>2024 - 2025</BioYear>
             Attending Turing School Of Software And Design Full Stack Program
           </BioSection>
         </Section>
